@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User page</title>
+</head>
+<body>
+    <h1>List of all users</h1>
+    <br>
+    <table>
+        <tr>
+            <td>Full Name</td>
+            <td>Age</td>
+            <td>Gender</td>
+            <td></td>
+            <td></td>
+        </tr>
+        {% for user_item in users_data %}
+        <tr>
+            <td>{{user_item.id}}</td>
+            <td>{{user_item.name}}</td>
+            <td>{{user_item.age}}</td>
+            <td>{{user_item.gender}}</td>
+            <td><a href="/edit-user/{{user_item.id}}">Edit</a></td>
+            <td><a href="">Delete</a></td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+    <p><a href="/registeruser">Register a new user</a></p>
+
+    <p><a href ="/">Return to home page</a></p>
+   
+</body>
+</html>

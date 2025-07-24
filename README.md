@@ -1,2 +1,1 @@
-# ToDoFlaskApp
-Sample app in flask to deploy on to Aws cloud
+A simple flask app
