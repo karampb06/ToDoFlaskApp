@@ -4,10 +4,23 @@ from flask import Flask,render_template,request, redirect
 from models import db, InfoModel
 
 from flask import Flask
+import os
  
 app = Flask(__name__)
  
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:2003@localhost:5432/flaskdemodb"
+# our database uri
+if 'RDS_DB_NAME' in os.environ:
+    app.config['SQLALCHEMY_DATABASE_URI'] = \
+        'postgresql://{username}:{password}@{host}:{port}/{database}'.format(
+        username=os.environ['RDS_USERNAME'],
+        password=os.environ['RDS_PASSWORD'],
+        host=os.environ['RDS_HOSTNAME'],
+        port=os.environ['RDS_PORT'],
+        database=os.environ['RDS_DB_NAME'],
+    )
+else:
+    # our database uri
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:2003@localhost:5432/flaskdemodb"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
  
 db.init_app(app)
