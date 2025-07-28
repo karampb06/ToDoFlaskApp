@@ -7,6 +7,7 @@ from flask import Flask
 import os
  
 app = Flask(__name__)
+SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
  
 # our database uri
 if 'RDS_DB_NAME' in os.environ:
